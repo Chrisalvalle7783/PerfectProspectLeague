@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "Perfect Prospect League",
+    "slug": "perfect-prospect-league",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.perfectprospect.league"
+    },
+    "android": {
+      "package": "com.perfectprospect.league",
+      "adaptiveIcon": {
+        "backgroundColor": "#071019"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
