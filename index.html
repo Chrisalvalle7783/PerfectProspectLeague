@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfect Prospect League</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#07111f;
+  color:white;
+  padding-bottom:80px
+}
+header{
+  background:linear-gradient(135deg,#07111f,#123b63);
+  padding:25px 18px;
+  border-bottom:3px solid #f5b400
+}
+.logo{
+  color:#f5b400;
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:2px
+}
+h1{font-size:30px;margin:8px 0}
+.subtitle{color:#b8c5d6;font-size:14px}
+
+.container{padding:18px;max-width:900px;margin:auto}
+
+.hero{
+  background:linear-gradient(135deg,#123b63,#0c223b);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:20px
+}
+.hero h2{font-size:23px;margin-bottom:8px}
+.hero p{color:#cbd5e1;line-height:1.5}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:18px
+}
+.stat{
+  background:#07111f;
+  padding:14px 5px;
+  text-align:center;
+  border-radius:12px
+}
+.stat strong{
+  display:block;
+  color:#f5b400;
+  font-size:22px
+}
+.stat span{font-size:11px;color:#aab8c8}
+
+.section-title{
+  font-size:19px;
+  margin:25px 0 12px
+}
+
+.search{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #28435e;
+  background:#0c1b2d;
+  color:white;
+  font-size:16px;
+  margin-bottom:15px
+}
+
+.player{
+  background:#0c1b2d;
+  border:1px solid #1e3852;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:14px
+}
+.rank{
+  width:42px;
+  height:42px;
+  background:#f5b400;
+  color:#07111f;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-size:18px
+}
+.player-info{flex:1}
+.player-name{font-size:17px;font-weight:bold}
+.player-meta{
+  color:#94a3b8;
+  font-size:12px;
+  margin-top:4px
+}
+.rating{
+  color:#f5b400;
+  font-weight:bold
+}
+.badge{
+  display:inline-block;
+  margin-top:7px;
+  padding:4px 8px;
+  background:#153a5c;
+  border-radius:20px;
+  font-size:10px
+}
+
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#081523;
+  border-top:1px solid #28435e;
+  display:flex;
+  justify-content:space-around;
+  padding:11px 4px;
+  z-index:10
+}
+nav button{
+  background:none;
+  border:none;
+  color:#94a3b8;
+  font-size:11px;
+  cursor:pointer
+}
+nav button span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px
+}
+nav button.active{color:#f5b400}
+
+.page{display:none}
+.page.active{display:block}
+
+.card{
+  background:#0c1b2d;
+  padding:18px;
+  border-radius:15px;
+  margin-bottom:12px;
+  border:1px solid #1e3852
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">PPL ⚾</div>
+  <h1>Perfect Prospect League</h1>
+  <div class="subtitle">El futuro del béisbol comienza aquí.</div>
+</header>
+
+<div class="container">
+
+<section id="inicio" class="page active">
+
+<div class="hero">
+  <h2>Descubre la próxima estrella ⚾</h2>
+  <p>Plataforma de evaluación, estadísticas y rankings para prospectos de béisbol.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <strong>150+</strong>
+      <span>PROSPECTOS</span>
+    </div>
+    <div class="stat">
+      <strong>24</strong>
+      <span>EQUIPOS</span>
+    </div>
+    <div class="stat">
+      <strong>8</strong>
+      <span>EVENTOS</span>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title">🔥 Top Prospectos</h2>
+
+<input
+ class="search"
+ id="search"
+ placeholder="Buscar jugador..."
+ oninput="buscar()">
+
+<div id="players"></div>
+
+</section>
+
+<section id="rankings" class="page">
+<h2 class="section-title">🏆 Rankings</h2>
+<div class="card">
+<strong>Ranking General PPL</strong>
+<p style="color:#94a3b8;margin-top:8px">
+Clasificación de los mejores prospectos según rendimiento, herramientas y proyección.
+</p>
+</div>
+<div id="rankingPlayers"></div>
+</section>
+
+<section id="equipos" class="page">
+<h2 class="section-title">🧢 Equipos</h2>
+
+<div class="card">
+<h3>PPL Elite</h3>
+<p>Prospect Development Team</p>
+</div>
+
+<div class="card">
+<h3>Future Stars</h3>
+<p>High Performance Baseball</p>
+</div>
+
+<div class="card">
+<h3>Next Level</h3>
+<p>Player Development Academy</p>
+</div>
+
+</section>
+
+<section id="perfil" class="page">
+<h2 class="section-title">👤 Mi Perfil</h2>
+
+<div class="card">
+<h3>Perfect Prospect League</h3>
+<p style="margin-top:8px;color:#94a3b8">
+Crea tu perfil como jugador, entrenador o scout.
+</p>
+</div>
+
+</section>
+
+</div>
+
+<nav>
+<button class="active" onclick="pagina('inicio',this)">
+<span>🏠</span>Inicio
+</button>
+
+<button onclick="pagina('rankings',this)">
+<span>🏆</span>Rankings
+</button>
+
+<button onclick="pagina('equipos',this)">
+<span>⚾</span>Equipos
+</button>
+
+<button onclick="pagina('perfil',this)">
+<span>👤</span>Perfil
+</button>
+</nav>
+
+<script>
+
+const jugadores=[
+ {rank:1,nombre:"Carlos Martínez",pos:"SS",edad:17,pais:"🇩🇴 República Dominicana",rating:95},
+ {rank:2,nombre:"Luis Rodríguez",pos:"CF",edad:16,pais:"🇻🇪 Venezuela",rating:93},
+ {rank:3,nombre:"Miguel Torres",pos:"RHP",edad:18,pais:"🇵🇷 Puerto Rico",rating:91},
+ {rank:4,nombre:"Juan García",pos:"3B",edad:17,pais:"🇩🇴 República Dominicana",rating:89},
+ {rank:5,nombre:"Daniel Pérez",pos:"C",edad:16,pais:"🇲🇽 México",rating:88}
+];
+
+function crearJugador(j){
+ return `
+ <div class="player">
+   <div class="rank">${j.rank}</div>
+   <div class="player-info">
+     <div class="player-name">${j.nombre}</div>
+     <div class="player-meta">
+       ${j.pos} • ${j.edad} años • ${j.pais}
+     </div>
+     <span class="badge">PROSPECT</span>
+   </div>
+   <div class="rating">${j.rating}</div>
+ </div>`;
+}
+
+function mostrar(lista){
+ document.getElementById("players").innerHTML=
+ lista.map(crearJugador).join("");
+
+ document.getElementById("rankingPlayers").innerHTML=
+ jugadores.map(crearJugador).join("");
+}
+
+function buscar(){
+ const texto=document.getElementById("search").value.toLowerCase();
+
+ const resultado=jugadores.filter(j=>
+   j.nombre.toLowerCase().includes(texto) ||
+   j.pos.toLowerCase().includes(texto) ||
+   j.pais.toLowerCase().includes(texto)
+ );
+
+ document.getElementById("players").innerHTML=
+ resultado.map(crearJugador).join("");
+}
+
+function pagina(id,boton){
+ document.querySelectorAll(".page").forEach(p=>
+   p.classList.remove("active")
+ );
+
+ document.getElementById(id).classList.add("active");
+
+ document.querySelectorAll("nav button").forEach(b=>
+   b.classList.remove("active")
+ );
+
+ boton.classList.add("active");
+ window.scrollTo(0,0);
+}
+
+mostrar(jugadores);
+
+</script>
+
+</body>
+</html>
