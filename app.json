@@ -2,7 +2,7 @@
   "expo": {
     "name": "Perfect Prospect League",
     "slug": "perfect-prospect-league",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "ios": {
@@ -11,6 +11,10 @@
     },
     "android": {
       "package": "com.perfectprospect.league",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#071019"
       }
